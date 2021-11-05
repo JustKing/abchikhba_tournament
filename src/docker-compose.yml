@@ -1,0 +1,9 @@
+version: "3"
+services:
+  tarantool-cutit:
+    container_name: tournament-cutit
+    restart: always
+    tty: true
+    ports:
+      - "3002:80"
+    build: .

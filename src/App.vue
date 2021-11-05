@@ -1,12 +1,23 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Список моих соревнований</router-link> |
+      <router-link to="/create">Создать соревнование</router-link>
     </div>
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { getCookie } from "./utils/Cookie";
+
+export default Vue.extend({
+  mounted(): void {
+    this.$store.commit("initTournamets", getCookie("tournaments"));
+  },
+});
+</script>
 
 <style>
 #app {

@@ -1,18 +1,23 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <h1>Мои турниры</h1>
+    <template v-if="tournaments.length > 0">
+      <div v-for="tournament in tournaments" :key="tournament.link">
+        <router-link :to="`/tournament/${tournament.link}`">
+          {{ tournament.link }}
+        </router-link>
+      </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class Home extends Vue {}
+@Component
+export default class Home extends Vue {
+  get tournaments(): any {
+    return this.$store.state.tournaments;
+  }
+}
 </script>
